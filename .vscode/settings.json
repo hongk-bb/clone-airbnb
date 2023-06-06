@@ -1,5 +1,8 @@
 {
   "editor.quickSuggestions": {
-    "strings": true
-  }
+    "other": "on",
+    "comments": "on",
+    "strings": "on"
+  },
+  "editor.hover.enabled": true
 }
