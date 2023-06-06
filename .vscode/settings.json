@@ -4,5 +4,7 @@
     "comments": "on",
     "strings": "on"
   },
-  "editor.hover.enabled": true
+  "editor.hover.enabled": true,
+  "typescript.tsdk": "node_modules\\typescript\\lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true
 }
