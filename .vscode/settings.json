@@ -2,6 +2,8 @@
   "editor.quickSuggestions": {
     "strings": "on"
   },
+  "tailwindCSS.colorDecorators": true,
+  "editor.defaultColorDecorators": true,
   "editor.hover.enabled": true,
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
@@ -9,5 +11,8 @@
   "editor.fontSize": 13,
   "editor.codeLensFontFamily": "'Fira Code','IBM Plex Mono Medium'",
   "editor.fontLigatures": true,
-  "debug.console.fontFamily": "default"
+  "debug.console.fontFamily": "default",
+  "editor.bracketPairColorization.independentColorPoolPerBracketType": true,
+  "errorLens.statusBarColorsEnabled": true,
+  "git-graph.repository.commits.mute.commitsThatAreNotAncestorsOfHead": true
 }

@@ -6,6 +6,7 @@ import useModalStore from '@/app/hooks/useModalStore'
 import Heading from '../Heading'
 import { categories } from '../navbar/Categories'
 import CategoryInput from '../inputs/CategoryInput'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 enum STEPS {
   CATEGORY = 0,
@@ -20,6 +21,48 @@ const RentModal = () => {
   const { rentModal } = useModalStore()
 
   const [step, setStep] = useState(STEPS.CATEGORY)
+
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    watch,
+    formState: { errors },
+    reset
+  } = useForm<FieldValues>({
+    defaultValues: {
+      category: '',
+      location: null,
+      guestCount: 1,
+      roomCount: 1,
+      bathroomCount: 1,
+      imageSrc: '',
+      price: 1,
+      title: '',
+      description: ''
+    }
+  })
+
+  const location = watch('location')
+  const category = watch('category')
+  const guestCount = watch('guestCount')
+  const roomCount = watch('roomCount')
+  const bathroomCount = watch('bathroomCount')
+  const imageSrc = watch('imageSrc')
+
+  // const Map = useMemo(() => dynamic(() => import('../Map'), { 
+  //   ssr: false 
+  // }), [location]);
+
+
+  const setCustomValue = (id: string, value: any) => {
+    setValue(id, value, {
+      shouldDirty: true,
+      shouldTouch: true,
+      shouldValidate: true
+    })
+  }
+
 
   const onBack = () => {
     setStep(value => value - 1)
