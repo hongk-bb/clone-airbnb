@@ -2,10 +2,8 @@
 
 import { AiOutlineMenu } from 'react-icons/ai'
 import Avatar from './Avater'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import MenuItem from './MenuItem'
-// import useRegisterModal from "@/app/hooks/useRegisterModal"
-// import useLoginModal from "@/app/hooks/useLoginModal"
 
 import { SafeUser } from '@/app/types'
 import { signOut } from 'next-auth/react'
@@ -19,6 +17,22 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const { loginModal, registerModal, rentModal } = useModalStore()
   const [isOpen, setIsOpen] = useState(false)
 
+  const menuRef = useRef<HTMLDivElement>(null)
+
+  useEffect(() => {
+    const handleOutsideClick = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setIsOpen(false)
+      }
+    }
+
+    document.addEventListener('mousedown', handleOutsideClick)
+
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [])
+
   const toggleOpen = useCallback(() => {
     setIsOpen(value => !value)
   }, [])
@@ -28,7 +42,6 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       return loginModal.onOpen()
     }
 
-    // Open Rent Modal
     rentModal.onOpen()
   }, [currentUser, loginModal, rentModal])
 
@@ -78,6 +91,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
       </div>
       {isOpen && (
         <div
+          ref={menuRef}
           className='
            absolute
            rounded-xl
