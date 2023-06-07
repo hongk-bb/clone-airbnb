@@ -64,6 +64,7 @@ const Modal: React.FC<ModalProps> = ({
 
   /* When the height of Modal exceeds the height of the screen, set margin-top */
   const ModalRef = useRef<HTMLDivElement>(null)
+
   const handleModalMarginTop = useCallback(() => {
     if (ModalRef.current) {
       const viewportHeight = window.innerHeight
@@ -74,8 +75,11 @@ const Modal: React.FC<ModalProps> = ({
           calc(${modalHeight - viewportHeight}px + 3rem)
         `
       }
+
+      console.log(modalHeight, viewportHeight)
     }
   }, [ModalRef.current])
+
   useEffect(() => {
     handleModalMarginTop()
   }, [handleModalMarginTop])
