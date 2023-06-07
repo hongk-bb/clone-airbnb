@@ -9,17 +9,17 @@ import { toast } from "react-hot-toast"
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
 
 // import useLoginModal from "@/app/hooks/useLoginModal";
-import useRegisterModal from "@/app/hooks/useRegisterModal"
+// import useRegisterModal from "@/app/hooks/useRegisterModal"
 
 import Modal from "./Modal"
 import Input from "../inputs/Input"
 import Heading from "../Heading"
 import Button from "../Button"
 import { signIn } from "next-auth/react"
+import useModalStore from "@/app/hooks/useModalStore"
 
 const RegisterModal = () => {
-  const registerModal = useRegisterModal()
-  // const loginModal = useLoginModal();
+  const { loginModal, registerModal } = useModalStore()
   const [isLoading, setIsLoading] = useState(false)
 
   const {
@@ -42,7 +42,7 @@ const RegisterModal = () => {
       .then(() => {
         toast.success("Registered!")
         registerModal.onClose()
-        // loginModal.onOpen();
+        loginModal.onOpen()
       })
       .catch(error => {
         toast.error(error)
@@ -54,7 +54,7 @@ const RegisterModal = () => {
 
   const onToggle = useCallback(() => {
     registerModal.onClose()
-    // loginModal.onOpen();
+    loginModal.onOpen()
   }, [registerModal])
 
   const bodyContent = (
@@ -101,7 +101,7 @@ const RegisterModal = () => {
         outline
         label="Continue with Github"
         icon={AiFillGithub}
-        onClick={() => signIn('github')}
+        onClick={() => signIn("github")}
       />
       <div
         className="

@@ -4,19 +4,19 @@ import { AiOutlineMenu } from "react-icons/ai"
 import Avatar from "./Avater"
 import { useCallback, useState } from "react"
 import MenuItem from "./MenuItem"
-import useRegisterModal from "@/app/hooks/useRegisterModal"
-import useLoginModal from "@/app/hooks/useLoginModal"
+// import useRegisterModal from "@/app/hooks/useRegisterModal"
+// import useLoginModal from "@/app/hooks/useLoginModal"
 
 import { SafeUser } from "@/app/types"
 import { signOut } from "next-auth/react"
+import useModalStore from "@/app/hooks/useModalStore"
 
 interface UserMenuProps {
   currentUser?: SafeUser | null
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
-  const registerModal = useRegisterModal()
-  const loginModal = useLoginModal()
+  const { loginModal, registerModal } = useModalStore()
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleOpen = useCallback(() => {
