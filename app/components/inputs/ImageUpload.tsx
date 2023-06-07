@@ -34,9 +34,10 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
     >
       {({ open }) => {
         return (
-          <div
-            onClick={() => open?.()}
-            className='
+          open && (
+            <div
+              onClick={() => open()}
+              className='
               relative
               cursor-pointer
               hover:opacity-70
@@ -52,29 +53,21 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
               gap-4
               text-neutral-600
             '
-          >
-            <TbPhotoPlus size={50} />
-            <div className='font-semibold text-lg'>Click to upload</div>
-            {value && (
-              <div
-                className='
-              absolute inset-0 w-full h-full'
-              >
-                {/* <Image
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  src={value}
-                  alt='House'
-                /> */}
-                <CldImage
-                  fill
-                  src={value}
-                  preserveTransformations
-                  alt='House'
-                />
-              </div>
-            )}
-          </div>
+            >
+              <TbPhotoPlus size={50} />
+              <div className='font-semibold text-lg'>Click to upload</div>
+              {value && (
+                <div className='absolute inset-0 w-full h-full'>
+                  <CldImage
+                    fill
+                    src={value}
+                    preserveTransformations
+                    alt='House'
+                  />
+                </div>
+              )}
+            </div>
+          )
         )
       }}
     </CldUploadWidget>
