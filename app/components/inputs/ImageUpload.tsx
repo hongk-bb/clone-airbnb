@@ -1,6 +1,6 @@
 'use client'
 
-import { CldUploadWidget } from 'next-cloudinary'
+import { CldUploadWidget, CldImage } from 'next-cloudinary'
 import Image from 'next/image'
 import { useCallback } from 'react'
 import { TbPhotoPlus } from 'react-icons/tb'
@@ -9,7 +9,7 @@ declare global {
   var cloudinary: any
 }
 
-const uploadPreset = 'pgc9ehd5'
+const uploadPreset = 'g0atrcqy'
 
 interface ImageUploadProps {
   onChange: (value: string) => void
@@ -60,10 +60,16 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ onChange, value }) => {
                 className='
               absolute inset-0 w-full h-full'
               >
-                <Image
+                {/* <Image
                   fill
                   style={{ objectFit: 'cover' }}
                   src={value}
+                  alt='House'
+                /> */}
+                <CldImage
+                  fill
+                  src={value}
+                  preserveTransformations
                   alt='House'
                 />
               </div>
