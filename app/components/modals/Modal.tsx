@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import Button from '../Button'
 import { IoMdClose } from 'react-icons/io'
+import useClickOutside from '@/app/hooks/useClickOutside'
 
 interface ModalProps {
   isOpen?: boolean
@@ -62,9 +63,10 @@ const Modal: React.FC<ModalProps> = ({
     secondaryAction()
   }, [secondaryAction, disabled])
 
-  /* When the height of Modal exceeds the height of the screen, set margin-top */
   const ModalRef = useRef<HTMLDivElement>(null)
+  useClickOutside(ModalRef, handleClose)
 
+  /* When the height of Modal exceeds the height of the screen, set margin-top */
   const handleModalMarginTop = useCallback(() => {
     if (ModalRef.current) {
       const viewportHeight = window.innerHeight
@@ -104,7 +106,6 @@ const Modal: React.FC<ModalProps> = ({
           focus:outline-none
           bg-neutral-800/70
         '
-        onClick={handleClose}
       >
         <div
           className='
@@ -118,7 +119,6 @@ const Modal: React.FC<ModalProps> = ({
           lg:h-auto
           md:h-auto
           '
-          onClick={e => e.stopPropagation()}
         >
           {/*content*/}
           <div

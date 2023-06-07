@@ -8,6 +8,7 @@ import MenuItem from './MenuItem'
 import { SafeUser } from '@/app/types'
 import { signOut } from 'next-auth/react'
 import useModalStore from '@/app/hooks/useModalStore'
+import useClickOutside from '@/app/hooks/useClickOutside'
 
 interface UserMenuProps {
   currentUser?: SafeUser | null
@@ -18,20 +19,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false)
 
   const menuRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    const handleOutsideClick = (event: MouseEvent) => {
-      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsOpen(false)
-      }
-    }
-
-    document.addEventListener('mousedown', handleOutsideClick)
-
-    return () => {
-      document.removeEventListener('mousedown', handleOutsideClick)
-    }
-  }, [])
+  useClickOutside(menuRef, () => setIsOpen(false))
 
   const toggleOpen = useCallback(() => {
     setIsOpen(value => !value)
