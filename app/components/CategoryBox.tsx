@@ -1,9 +1,9 @@
-"use client"
+'use client'
 
-import qs from "query-string"
-import { useRouter, useSearchParams } from "next/navigation"
-import { useCallback } from "react"
-import { IconType } from "react-icons"
+import qs from 'query-string'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useCallback } from 'react'
+import { IconType } from 'react-icons'
 
 interface CategoryBoxProps {
   icon: IconType
@@ -31,13 +31,13 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
       category: label
     }
 
-    if (params?.get("category") === label) {
+    if (params?.get('category') === label) {
       delete updatedQuery.category
     }
 
     const url = qs.stringifyUrl(
       {
-        url: "/",
+        url: '/',
         query: updatedQuery
       },
       { skipNull: true }
@@ -60,12 +60,12 @@ const CategoryBox: React.FC<CategoryBoxProps> = ({
         hover:text-neutral-800
         transition
         cursor-pointer
-        ${selected ? "border-b-neutral-800" : "border-transparent"}
-        ${selected ? "text-neutral-800" : "text-neutral-500"}
+        ${selected ? 'border-b-neutral-800' : 'border-transparent'}
+        ${selected ? 'text-neutral-800' : 'text-neutral-500'}
       `}
     >
       <Icon size={26} />
-      <div className="font-medium text-sm">{label}</div>
+      <div className='font-medium text-sm'>{label}</div>
     </div>
   )
 }

@@ -1,22 +1,22 @@
-"use client"
+'use client'
 
-import { useCallback, useEffect, useState } from "react"
-import { toast } from "react-hot-toast"
-import { signIn } from "next-auth/react"
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
-import { FcGoogle } from "react-icons/fc"
-import { AiFillGithub } from "react-icons/ai"
-import { useRouter } from "next/navigation"
+import { useCallback, useEffect, useState } from 'react'
+import { toast } from 'react-hot-toast'
+import { signIn } from 'next-auth/react'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
+import { FcGoogle } from 'react-icons/fc'
+import { AiFillGithub } from 'react-icons/ai'
+import { useRouter } from 'next/navigation'
 
 // import useRegisterModal from "@/app/hooks/useRegisterModal"
 // import useLoginModal from "@/app/hooks/useLoginModal"
 
-import useModalStore from "@/app/hooks/useModalStore"
+import useModalStore from '@/app/hooks/useModalStore'
 
-import Modal from "./Modal"
-import Input from "../inputs/Input"
-import Heading from "../Heading"
-import Button from "../Button"
+import Modal from './Modal'
+import Input from '../inputs/Input'
+import Heading from '../Heading'
+import Button from '../Button'
 
 const LoginModal = () => {
   const router = useRouter()
@@ -32,22 +32,22 @@ const LoginModal = () => {
     formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
-      email: "",
-      password: ""
+      email: '',
+      password: ''
     }
   })
 
   const onSubmit: SubmitHandler<FieldValues> = data => {
     setIsLoading(true)
 
-    signIn("credentials", {
+    signIn('credentials', {
       ...data,
       redirect: false
     }).then(callback => {
       setIsLoading(false)
 
       if (callback?.ok) {
-        toast.success("Logged in")
+        toast.success('Logged in')
         router.refresh()
         loginModal.onClose()
       }
@@ -64,20 +64,20 @@ const LoginModal = () => {
   }, [loginModal, registerModal])
 
   const bodyContent = (
-    <div className="flex flex-col gap-4">
-      <Heading title="Welcome back" subtitle="Login to your account!" />
+    <div className='flex flex-col gap-4'>
+      <Heading title='Welcome back' subtitle='Login to your account!' />
       <Input
-        id="email"
-        label="Email"
+        id='email'
+        label='Email'
         disabled={isLoading}
         register={register}
         errors={errors}
         required
       />
       <Input
-        id="password"
-        label="Password"
-        type="password"
+        id='password'
+        label='Password'
+        type='password'
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -87,35 +87,36 @@ const LoginModal = () => {
   )
 
   const footerContent = (
-    <div className="flex flex-col gap-4 mt-3">
+    <div className='flex flex-col gap-4 mt-3'>
       <hr />
+      {/* FIEXME: google login */}
       <Button
         outline
-        label="Continue with Google"
+        label='Continue with Google'
         icon={FcGoogle}
-        onClick={() => signIn("google")}
+        onClick={() => signIn('google')}
       />
       <Button
         outline
-        label="Continue with Github"
+        label='Continue with Github'
         icon={AiFillGithub}
-        onClick={() => signIn("github")}
+        onClick={() => signIn('github')}
       />
       <div
-        className="
-      text-neutral-500 text-center mt-4 font-light"
+        className='
+      text-neutral-500 text-center mt-4 font-light'
       >
         <p>
           First time using Airbnb?
           <span
             onClick={onToggle}
-            className="
+            className='
               text-neutral-800
               cursor-pointer 
               hover:underline
-            "
+            '
           >
-            {" "}
+            {' '}
             Create an account
           </span>
         </p>
@@ -127,8 +128,8 @@ const LoginModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={loginModal.isOpen}
-      title="Login"
-      actionLabel="Continue"
+      title='Login'
+      actionLabel='Continue'
       onClose={loginModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}

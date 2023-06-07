@@ -1,4 +1,4 @@
-import create from "zustand"
+import create from 'zustand'
 
 interface ModalStore {
   isOpen: boolean
@@ -8,7 +8,7 @@ interface ModalStore {
 
 type ModalStores = Record<string, ModalStore>
 
-const storeNames = ["loginModal", "registerModal", "rentModal", "searchModal"]
+const storeNames = ['loginModal', 'registerModal', 'rentModal', 'searchModal']
 
 const useModalStore = create<ModalStores>(set => {
   const stores: ModalStores = {}

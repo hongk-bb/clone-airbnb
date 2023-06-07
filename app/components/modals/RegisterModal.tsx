@@ -1,22 +1,21 @@
-"use client"
+'use client'
 
-import axios from "axios"
-import { AiFillGithub } from "react-icons/ai"
-// import { signIn } from "next-auth/react";
-import { FcGoogle } from "react-icons/fc"
-import { useCallback, useState } from "react"
-import { toast } from "react-hot-toast"
-import { FieldValues, SubmitHandler, useForm } from "react-hook-form"
+import axios from 'axios'
+import { AiFillGithub } from 'react-icons/ai'
+import { FcGoogle } from 'react-icons/fc'
+import { useCallback, useState } from 'react'
+import { toast } from 'react-hot-toast'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 
 // import useLoginModal from "@/app/hooks/useLoginModal";
 // import useRegisterModal from "@/app/hooks/useRegisterModal"
 
-import Modal from "./Modal"
-import Input from "../inputs/Input"
-import Heading from "../Heading"
-import Button from "../Button"
-import { signIn } from "next-auth/react"
-import useModalStore from "@/app/hooks/useModalStore"
+import Modal from './Modal'
+import Input from '../inputs/Input'
+import Heading from '../Heading'
+import Button from '../Button'
+import { signIn } from 'next-auth/react'
+import useModalStore from '@/app/hooks/useModalStore'
 
 const RegisterModal = () => {
   const { loginModal, registerModal } = useModalStore()
@@ -28,9 +27,9 @@ const RegisterModal = () => {
     formState: { errors }
   } = useForm<FieldValues>({
     defaultValues: {
-      name: "",
-      email: "",
-      password: ""
+      name: '',
+      email: '',
+      password: ''
     }
   })
 
@@ -38,9 +37,9 @@ const RegisterModal = () => {
     setIsLoading(true)
 
     axios
-      .post("/api/register", data)
+      .post('/api/register', data)
       .then(() => {
-        toast.success("Registered!")
+        toast.success('Registered!')
         registerModal.onClose()
         loginModal.onOpen()
       })
@@ -58,28 +57,28 @@ const RegisterModal = () => {
   }, [registerModal, loginModal])
 
   const bodyContent = (
-    <div className="flex flex-col gap-4">
-      <Heading title="Welcome to Airbnb" subtitle="Create an account!" />
+    <div className='flex flex-col gap-4'>
+      <Heading title='Welcome to Airbnb' subtitle='Create an account!' />
       <Input
-        id="email"
-        label="Email"
+        id='email'
+        label='Email'
         disabled={isLoading}
         register={register}
         errors={errors}
         required
       />
       <Input
-        id="name"
-        label="Name"
+        id='name'
+        label='Name'
         disabled={isLoading}
         register={register}
         errors={errors}
         required
       />
       <Input
-        id="password"
-        label="Password"
-        type="password"
+        id='password'
+        label='Password'
+        type='password'
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -89,39 +88,39 @@ const RegisterModal = () => {
   )
 
   const footerContent = (
-    <div className="flex flex-col gap-4 mt-3">
+    <div className='flex flex-col gap-4 mt-3'>
       <hr />
       <Button
         outline
-        label="Continue with Google"
+        label='Continue with Google'
         icon={FcGoogle}
-        onClick={() => signIn("google")}
+        onClick={() => signIn('google')}
       />
       <Button
         outline
-        label="Continue with Github"
+        label='Continue with Github'
         icon={AiFillGithub}
-        onClick={() => signIn("github")}
+        onClick={() => signIn('github')}
       />
       <div
-        className="
+        className='
           text-neutral-500 
           text-center 
           mt-4 
           font-light
-        "
+        '
       >
         <p>
           Already have an account?
           <span
             onClick={onToggle}
-            className="
+            className='
               text-neutral-800
               cursor-pointer 
               hover:underline
-            "
+            '
           >
-            {" "}
+            {' '}
             Log in
           </span>
         </p>
@@ -133,8 +132,8 @@ const RegisterModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={registerModal.isOpen}
-      title="Register"
-      actionLabel="Continue"
+      title='Register'
+      actionLabel='Continue'
       onClose={registerModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
