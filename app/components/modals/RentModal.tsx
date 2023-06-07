@@ -1,26 +1,22 @@
 'use client'
 
-import axios from 'axios';
-import { toast } from 'react-hot-toast';
-import { 
-  FieldValues, 
-  SubmitHandler, 
-  useForm
-} from 'react-hook-form';
+import axios from 'axios'
+import { toast } from 'react-hot-toast'
+import { FieldValues, SubmitHandler, useForm } from 'react-hook-form'
 import dynamic from 'next/dynamic'
-import { useRouter } from 'next/navigation';
-import { useMemo, useState } from "react";
+import { useRouter } from 'next/navigation'
+import { useMemo, useState } from 'react'
 
 import useModalStore from '@/app/hooks/useModalStore'
 
-import Modal from "./Modal";
-import Counter from "../inputs/Counter";
-import CategoryInput from '../inputs/CategoryInput';
-import CountrySelect from "../inputs/CountrySelect";
-import { categories } from '../navbar/Categories';
-import ImageUpload from '../inputs/ImageUpload';
-import Input from '../inputs/Input';
-import Heading from '../Heading';
+import Modal from './Modal'
+import Counter from '../inputs/Counter'
+import CategoryInput from '../inputs/CategoryInput'
+import CountrySelect from '../inputs/CountrySelect'
+import { categories } from '../navbar/Categories'
+import ImageUpload from '../inputs/ImageUpload'
+import Input from '../inputs/Input'
+import Heading from '../Heading'
 
 enum STEPS {
   CATEGORY = 0,
@@ -66,9 +62,13 @@ const RentModal = () => {
   const bathroomCount = watch('bathroomCount')
   const imageSrc = watch('imageSrc')
 
-  const Map = useMemo(() => dynamic(() => import('../Map'), {
-    ssr: false
-  }), [location]);
+  const Map = useMemo(
+    () =>
+      dynamic(() => import('../Map'), {
+        ssr: false
+      }),
+    [location]
+  )
 
   const setCustomValue = (id: string, value: any) => {
     setValue(id, value, {
