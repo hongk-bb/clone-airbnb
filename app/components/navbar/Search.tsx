@@ -42,7 +42,6 @@ const Search = () => {
             font-semibold
             px-6
             border-x-[1px]
-            flex-1
             text-center
           "
         >

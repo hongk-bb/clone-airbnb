@@ -6,5 +6,9 @@
   },
   "editor.hover.enabled": true,
   "typescript.tsdk": "node_modules\\typescript\\lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.fontFamily": "\"IBM Plex Mono Medium\"",
+  "editor.fontSize": 13,
+  "editor.codeLensFontFamily": "",
+  "tailwindCSS.emmetCompletions": true
 }

@@ -25,7 +25,7 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
 
   return (
     <div className="relative">
-      <div className="flex flex-grow items-center gap-3">
+      <div className="flex flex-grow items-center gap-3 justify-end">
         <div
           onClick={() => {}}
           className="
