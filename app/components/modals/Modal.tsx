@@ -78,7 +78,7 @@ const Modal: React.FC<ModalProps> = ({
         `
       }
 
-      console.log(modalHeight, viewportHeight)
+      // console.log(modalHeight, viewportHeight)
     }
   }, [ModalRef.current])
 

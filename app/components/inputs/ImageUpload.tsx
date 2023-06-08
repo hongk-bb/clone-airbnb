@@ -1,7 +1,6 @@
 'use client'
 
 import { CldUploadWidget, CldImage } from 'next-cloudinary'
-import Image from 'next/image'
 import { useCallback } from 'react'
 import { TbPhotoPlus } from 'react-icons/tb'
 
