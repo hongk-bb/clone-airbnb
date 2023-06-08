@@ -8,6 +8,11 @@ const formattedCountries = countries.map(country => ({
   region: country.region
 }))
 
+/**
+ * This is a TypeScript function that returns an object with two methods to get a list of countries and
+ * to get a specific country by its value.
+ * @returns An object with two methods: `getAll` and `getByValue`.
+ */
 const useCountries = () => {
   const getAll = () => formattedCountries
 

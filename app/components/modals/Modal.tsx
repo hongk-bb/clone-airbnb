@@ -4,6 +4,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import Button from '../Button'
 import { IoMdClose } from 'react-icons/io'
 import useClickOutside from '@/app/hooks/useClickOutside'
+import useCenterModalRef from '@/app/hooks/useCenterModalRef'
 
 interface ModalProps {
   isOpen?: boolean
@@ -63,28 +64,8 @@ const Modal: React.FC<ModalProps> = ({
     secondaryAction()
   }, [secondaryAction, disabled])
 
-  const ModalRef = useRef<HTMLDivElement>(null)
+  const ModalRef = useCenterModalRef<HTMLDivElement>({ orginBottomMargin: 3 })
   useClickOutside(ModalRef, handleClose)
-
-  /* When the height of Modal exceeds the height of the screen, set margin-top */
-  const handleModalMarginTop = useCallback(() => {
-    if (ModalRef.current) {
-      const viewportHeight = window.innerHeight
-      const modalHeight = ModalRef.current.clientHeight
-
-      if (modalHeight > viewportHeight) {
-        ModalRef.current.style.marginTop = `
-          calc(${modalHeight - viewportHeight}px + 3rem)
-        `
-      }
-
-      // console.log(modalHeight, viewportHeight)
-    }
-  }, [ModalRef.current])
-
-  useEffect(() => {
-    handleModalMarginTop()
-  }, [handleModalMarginTop])
 
   if (!isOpen) {
     return null

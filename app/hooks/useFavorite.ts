@@ -11,6 +11,14 @@ interface IUseFavorite {
   currentUser?: SafeUser | null
 }
 
+/**
+ * This is a TypeScript function that handles toggling a favorite listing for a user and updating the
+ * UI accordingly.
+ * @param {IUseFavorite}  - The function `useFavorite` takes an object with two properties as its
+ * parameter:
+ * @returns The `useFavorite` function returns an object with two properties: `hasFavorited` and
+ * `toggleFavorite`.
+ */
 const useFavorite = ({ listingId, currentUser }: IUseFavorite) => {
   const router = useRouter()
 
