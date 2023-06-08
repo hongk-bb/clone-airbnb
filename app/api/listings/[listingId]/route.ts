@@ -19,10 +19,6 @@ export async function DELETE(
 
   const { listingId } = params
 
-  if (!listingId || typeof listingId !== 'string') {
-    throw new Error('Invalid ID')
-  }
-
   const listing = await prisma.listing.deleteMany({
     where: {
       id: listingId,
